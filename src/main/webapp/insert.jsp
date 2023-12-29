@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@page import="java.sql.*"%>
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,38 +7,41 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%	
-		String ip = "";
-		int port = 0000;
-		String database = "";
-		String user = "";
-		String password = "";
-		
-		String DRIVER_NAME = "com.tmax.tibero.jdbc.TbDriver";
-		String TIBERO_JDBC_URL = "jdbc:tibero:thin:@" + ip + ":" + port + ":" + database;
-		
-		String keyValue = request.getParameter("KEY_VALUE");
-		String col01 = request.getParameter("COL01");
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		
-		Class.forName(DRIVER_NAME);
-		
-		conn = DriverManager.getConnection(TIBERO_JDBC_URL, user, password);
-		
+	<%@ include file="driver.jsp"%>
+	<%
+	String subject = request.getParameter("subject");
+	String day = request.getParameter("day");
+	String time = request.getParameter("time");
+
+	System.out.println(subject);
+	System.out.println(day);
+	System.out.println(time);
+
+	try {
+		conn.setAutoCommit(false);
+
 		//SQL문
-		String sql = "insert into temp(KEY_VAL, COL01) values VALUES('hlnoe_subject', '미술')";
-		//String sql = "insert into temp(KEY_VAL, COL01) values VALUES (?, ?)"; 
-	
-		//pstmt.setString(1, 'subject');
-		//pstmt.setString(2, '미술'); 
-		
+		String sql = "insert into temp(KEY_VAL, COL01, COL02) values ('hlnoe_subject', '" + subject + "', '19');";
+
+		pstmt = conn.prepareStatement(sql);
 		pstmt.executeUpdate();
-		
+		conn.commit();
+
+	} catch (Exception e) {
+		if (conn != null) {
+			conn.rollback();
+			try {
+
+		conn.rollback();
+			} catch (Exception ex) {
+		System.out.println(ex);
+			}
+		}
+
+	} finally {
 		pstmt.close();
-		conn.close();		
-		
+		conn.close();
+	}
 	%>
 </body>
 </html>
