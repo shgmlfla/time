@@ -15,18 +15,18 @@
     <h1>시간표</h1>
     <form action="/insert.jsp" method="get" accept-charset="utf-8">
 	    <select name="subject">
-	        <option value="수학">수학</option>
-	        <option vlaue="국어">국어</option>
-	        <option value="과학">과학</option>
-	        <option value="영어">영어</option>
-	        <option value="사회">사회</option>
+	        <option value="MAT">수학</option>
+	        <option vlaue="KOR">국어</option>
+	        <option value="SCI">과학</option>
+	        <option value="ENG">영어</option>
+	        <option value="SOC">사회</option>
 	    </select>
 	    <select name="day">
-	        <option value="월">월</option>
-	        <option vlaue="화">화</option>
-	        <option value="수">수</option>
-	        <option value="목">목</option>
-	        <option value="목">금</option>
+	        <option value="MON">월</option>
+	        <option vlaue="TUE">화</option>
+	        <option value="WED">수</option>
+	        <option value="THU">목</option>
+	        <option value="FRI">금</option>
 	    </select>
 	    <select name="time">
 	        <option value="1">1교시</option>

@@ -1,16 +1,16 @@
+package test;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-public class JDBCConnection {
+public class JDBCConnection 
+{
 	
-	public Connection getConnection() throws Exception{
+	public static  Connection getJDBCConnection() 
+	throws Exception
+	{
 		
-		String ip = "";
-		int port = 0000;
-		String database = "";
-		String user = "";
-		String password = "";
+		
 		
 		String DRIVER_NAME = "com.tmax.tibero.jdbc.TbDriver";
 		String TIBERO_JDBC_URL = "jdbc:tibero:thin:@" + ip + ":" + port + ":" + database;
@@ -21,7 +21,6 @@ public class JDBCConnection {
 		 */
 		
 		Connection conn = null;
-		PreparedStatement pstmt = null;
 			
 		Class.forName(DRIVER_NAME);
 		conn = DriverManager.getConnection(TIBERO_JDBC_URL, user, password);
